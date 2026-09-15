@@ -20,6 +20,18 @@ The project was built to practice and demonstrate full-stack web development usi
 * REST API integration
 * MongoDB data storage
 
+## Screenshots
+
+### Home Page
+![TidyNote Home Page](./screenshots/home.png)
+
+### Dashboard
+![TidyNote Dashboard](./screenshots/dashboard.png)
+
+### Note Detail
+![TidyNote Note Detail](./screenshots/detail.png)
+
+
 ## Tech Stack
 
 ### Frontend
