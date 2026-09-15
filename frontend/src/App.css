@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Share+Tech&display=swap');
+
+.share-tech {
+  font-family: "Share Tech", sans-serif;
+}
+.listContainer::-webkit-scrollbar {
+  width: 6px;
+  transition: width 0.3s ease;
+}
+
+.listContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.listContainer:hover::-webkit-scrollbar-thumb{
+    background: #8A8779;
+}

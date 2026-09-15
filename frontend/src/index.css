@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-playfair: "Playfair Display", sans-serif;
+  --font-sharetech: "Share Tech", sans-serif;
+  --font-courgette: "Courgette", cursive;
+  --font-sansation: "Sansation", sans-serif;
+
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 922px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --color-heading: #18181B;
+  --color-text: #3F3F46;
+  --color-description: #71717A;
+  --color-muted: #A1A1AA;
+
+  --color-purple-light: #F3E8FF;
+  --color-purple-dark: #6d2fb0;
+  --color-purple-deep: #581C87;
+
+  /* =================================
+     PINK — NOTE
+  ================================= */
+
+  --color-pink-light: #fce7f3;
+  --color-pink: #f472b6;
+  --color-pink-dark: #be185d;
+
+  /* =================================
+     BLUE — NOTE
+  ================================= */
+
+  --color-blue-light: #e0f2fe;
+  --color-blue: #60a5fa;
+  --color-blue-dark: #1d4ed8;
+
+  /* =================================
+     ORANGE — NOTE
+  ================================= */
+
+  --color-orange-light: #ffedd5;
+  --color-orange: #fb923c;
+  --color-orange-dark: #c2410c;
+
+  /* =================================
+     YELLOW — NOTE
+  ================================= */
+
+  --color-yellow-light: #faf7d5;
+  --color-yellow: #facc15;
+  --color-yellow-dark: #a16207;
+
+  /* =================================
+     GREEN — OPTIONAL NOTE
+  ================================= */
+
+  --color-green-light: #dcfce7;
+  --color-green: #4ade80;
+  --color-green-dark: #15803d;
+
+  --color-border: #d2d0d4;
+  --color-border-dark: #c1bfc2;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F3E8FF;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+
+body{
+  font-family: var(--font-poppins);
+}
