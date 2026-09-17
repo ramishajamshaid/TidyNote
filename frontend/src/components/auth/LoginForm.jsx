@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import api from '../../api/api'
+import { toast } from 'sonner'
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -66,9 +67,11 @@ function LoginForm() {
 
             if (res.data.success) {
                 navigate("/dashboard")
+                toast.success("Login Successful")
             }
         } catch (err) {
             console.log("Error: ", err)
+            toast.error(err.response?.data?.message || "Login failed. Please try again.")
 
             const message =
                 err.response?.data?.message ||

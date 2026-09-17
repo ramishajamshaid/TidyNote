@@ -16,6 +16,8 @@ import Trash from './pages/Trash.jsx'
 import Settings from './pages/Settings.jsx'
 import Support from './pages/Support.jsx'
 import NoteDetail from './pages/NoteDetail.jsx'
+import AddNote from './pages/AddNote.jsx'
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,7 @@ const router = createBrowserRouter(
       <Route path='login' element={<LoginPage />} />
       <Route path='dashboard' element={<DashboardLayout/>}>
         <Route index element={<AllNotes/>}/>
+        <Route path='add-note' element={<AddNote/>}/>
         <Route path='favourites' element={<Favourites/>}/>
         <Route path='todos' element={<Todos/>}/>
         <Route path='completed' element={<Completed/>}/>
@@ -40,6 +43,7 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Toaster position='top-right'/>
     <RouterProvider router={router}>
       <App />
     </RouterProvider>

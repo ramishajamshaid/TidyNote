@@ -63,9 +63,7 @@ function NoteDetail() {
                                 <span className="flex justify-center items-center gap-1 text-purple-dark text-[0.75rem]">Auto-synced</span>
                             </div>
                             <div className="w-full bg-border h-px my-3"></div>
-                            <p className="w-full min-h-64 p-4 rounded-2xl text-text text-[0.9rem] leading-6 tablet:text-[1rem] tablet:leading-7" style={{backgroundColor: todo.color}}>
-                                {todo?.description}
-                            </p>
+                            <p className="tiptap w-full min-h-64 p-4 rounded-2xl text-text text-[0.9rem] leading-6 tablet:text-[1rem] tablet:leading-7" style={{backgroundColor: todo.color}} dangerouslySetInnerHTML={{ __html: todo?.description }}/>
                         </div>
                     </div>
                     )}

@@ -1,21 +1,29 @@
 import { AlertTriangle, X } from "lucide-react";
 import api from "../../api/api";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const DeleteModal = ({ isOpen, setIsModalOpen, setListItem, id, onDeleted }) => {
     if (!isOpen) return null;
+    const [isLoading, setLoading] = useState(false)
 
     const deleteNote = async (id) => {
-        console.log("Id: ", id);
+        if (!id) return;
+        setLoading(true)
         try {
             const res = await api.patch("/todo/delete-todo", { id })
             if (res.data?.success) {
-                setListItem(prev => prev.map(item => item._id === id? {...item, isTrashed:true}: item))
+                setListItem(prev => prev.map(item => item._id === id ? { ...item, isTrashed: true } : item))
+                toast.success("Note moved to trash!")
             }
         } catch (error) {
             console.log("Error: ", error);
+            toast.error(error.response?.data?.message || "Failed to delete note")
+        } finally {
+            setIsModalOpen(false)
+            onDeleted()
+            setLoading(false)
         }
-        setIsModalOpen(false)
-        onDeleted()
     }
 
     return (
@@ -84,9 +92,13 @@ const DeleteModal = ({ isOpen, setIsModalOpen, setListItem, id, onDeleted }) => 
 
                         <button
                             onClick={() => deleteNote(id)}
-                            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-red-500 hover:bg-red-600 transition-colors cursor-pointer"
+                            className="flex justify-center items-center w-full max-w-38 text-[15px] shadow-sm hover:shadow-md active:scale-[0.98] disabled:opacity-70 px-5 py-2 rounded-lg text-sm font-medium text-white bg-red-500 hover:bg-red-600 transition-colors cursor-pointer"
                         >
-                            Move to Trash
+                            {isLoading ? (
+                                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                            ) : (
+                                "Move to Trash"
+                            )}
                         </button>
                     </div>
 

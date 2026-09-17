@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import SidebarItem from '../components/SidebarItem'
 import { PanelLeftClose, CirclePlus, LayoutGrid, Star, PencilSparkles, CircleCheckBig, Trash, Settings, Headset } from 'lucide-react'
 import Header from '../components/Header'
-import AddNoteModal from '../components/modals/AddNoteModal.jsx'
 import api from '../api/api.js'
 import { allNotesCount, favNotesCount, trashedNotesCount } from '../calculations.js'
 import BottomNav from '../components/BottomNav.jsx'
 
 function DashboardLayout() {
+  const navigate = useNavigate()
   const [isSidebarOpen, setSidebar] = useState(window.innerWidth >= 768)
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [user, setUser] = useState({})
   const [listItem, setListItem] = useState([])
@@ -68,9 +67,9 @@ function DashboardLayout() {
   }, []);
   return (
     <>
-      <div className="flex flex-col tablet:flex-row h-screen"
+      <div className="flex flex-col tablet:flex-row h-screen overflow-hidden"
       >
-        <aside className={`${isSidebarOpen ? "w-65" : "w-14 overflow-hidden"} hidden bg-linear-to-br from-[#e6f3ff] to-[#f7eeff] tablet:flex flex-col h-full border-r border-border shrink-0 select-none transition-[width] duration-400 ease-in-out`}>
+        <aside className={`${isSidebarOpen ? "w-65" : "w-14 overflow-hidden"} hidden bg-linear-to-br from-[#e6f3ff] to-[#f7eeff] tablet:flex flex-col border-r border-border shrink-0 select-none transition-[width] duration-400 ease-in-out`}>
           <div className={`py-3 ${isSidebarOpen ? "px-6" : "px-3"} flex items-center justify-between`}>
             {isSidebarOpen && (<div className="flex items-center gap-1">
               <span className="font-semibold text-[20px] tracking-wide text-heading font-poppins">
@@ -92,7 +91,7 @@ function DashboardLayout() {
           <div className={`${isSidebarOpen ? "px-6" : "px-3"} flex justify-center items-center py-3`}>
             <button
               className={`w-full bg-purple-dark hover:bg-purple-deep text-white py-2 ${isSidebarOpen ? "px-4" : "px-0"} rounded-xl text-[14px] font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow active:scale-[0.98] cursor-pointer`}
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => navigate('/dashboard/add-note')}
             >
               <CirclePlus size={18} className="shrink-0" />
               {isSidebarOpen && (<span className={`whitespace-nowrap overflow-hidden transition-all duration-300 ${isSidebarOpen ? "max-w-24 opacity-100" : "max-w-0 opacity-0"}`}>New Note</span>)}
@@ -180,12 +179,12 @@ function DashboardLayout() {
             </div>
           </div>
         </aside>
-        <div className="flex flex-col flex-1 min-w-0 bg-[radial-gradient(circle_at_top,#f1e9f9_0%,#FAF7FF_25%,#FFFFFF_65%)]">
+        <div className="flex flex-col flex-1 min-w-0 min-h-0 bg-[radial-gradient(circle_at_top,#f1e9f9_0%,#FAF7FF_25%,#FFFFFF_65%)]">
           <Header
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1 min-h-0 overflow-y-auto">
             <Outlet context={{ listItem, setListItem, setFavourite, layout, setLayout, searchQuery, setSearchQuery }} />
           </main>
         </div>
@@ -204,7 +203,7 @@ function DashboardLayout() {
             />
             <button
               className="bg-purple-dark hover:bg-purple-deep text-white p-1.5 mobile:p-2 rounded-full text-[14px] font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-2xl"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => navigate('/dashboard/add-note')}
             >
               <CirclePlus className="w-5 h-5 mobile:w-6 mobile:h-6 shrink-0" />
             </button>
@@ -220,12 +219,6 @@ function DashboardLayout() {
             />
           </nav>
         </div>
-        <AddNoteModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          setListItem={setListItem}
-          setIsModalOpen={setIsModalOpen}
-        />
       </div>
     </>
   )
