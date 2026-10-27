@@ -41,7 +41,6 @@ function SignupForm() {
             [name]: value
         }))
 
-        // Field type karte waqt uska error hata do
         setErrors(prev => ({
             ...prev,
             [name]: ""
@@ -131,7 +130,6 @@ function SignupForm() {
             console.log("Error: ", err)
             console.log("Error REsponse: ", err.response?.data)
 
-            // Backend se error aaye to show kar sakti ho
             const message =
                 err.response?.data?.message || "Something went wrong"
 

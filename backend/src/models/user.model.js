@@ -17,6 +17,7 @@ const userSchema = new Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        index: true,
     },
     fullname: {
         type: String,

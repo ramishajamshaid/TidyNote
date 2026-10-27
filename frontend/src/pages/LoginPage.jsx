@@ -5,9 +5,9 @@ import LoginForm from '../components/auth/LoginForm'
 
 function LoginPage() {
     return (
-        <div className="min-h-screen w-full flex flex-col bg-[radial-gradient(circle_at_top,#f5eefc_0%,#fdfbff_28%,#ffffff_60%)] px-4 py-6 tablet:py-8">
+        <div className="min-h-screen w-full flex flex-col bg-[radial-gradient(circle_at_top,#f5eefc_0%,#fdfbff_28%,#ffffff_60%)] tablet:px-4 tablet:py-8">
             <div className="flex-1 flex items-center justify-center">
-                <div className="max-w-5xl w-full mx-auto flex flex-col items-stretch tablet:flex-row justify-center rounded-3xl overflow-hidden bg-linear-to-br from-purple-light via-pink-light to-blue-light">
+                <div className="max-w-5xl w-full mx-auto flex flex-col items-stretch tablet:flex-row justify-center tablet:rounded-3xl overflow-hidden bg-linear-to-br from-purple-light via-pink-light to-blue-light p-4">
                     <div className="max-w-xl w-full flex justify-center items-center">
                         <div className="w-full flex flex-col justify-center items-start md:gap-4 p-8 ml-3">
                             <span className="inline-flex items-center gap-1.5 bg-white/70 text-purple-dark text-[13px] font-medium font-poppins pl-2.5 pr-3 py-1.5 rounded-full mb-1">
@@ -26,9 +26,9 @@ function LoginPage() {
                         </div>
                     </div>
 
-                    <div className="max-w-xl w-full flex flex-col justify-center items-center gap-1.5 bg-white py-12 m-4 rounded-2xl overflow-hidden border border-border shadow-[0_20px_50px_-20px_rgba(24,24,27,0.18)]">
+                    <div className="w-full flex flex-col justify-center items-center gap-1.5 bg-white py-12 rounded-2xl border border-border shadow-[0_20px_50px_-20px_rgba(24,24,27,0.18)]">
                         <h2 className="text-[2rem] font-playfair font-semibold text-center text-heading">Log In</h2>
-                        <p className="text-[15px] text-center text-description font-poppins mb-2">
+                        <p className="text-[15px] text-center text-description font-poppins m-2">
                             Sign in and pick up where you left off.
                         </p>
                         <LoginForm />

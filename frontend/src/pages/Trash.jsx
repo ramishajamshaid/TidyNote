@@ -6,22 +6,27 @@ import { daysLeftInTrash, formateDate, timeAgo } from '../calculations'
 import PageHeader from '../components/PageHeader'
 
 function Trash() {
-  const { listItem, setFavourite, layout, setLayout, searchQuery } = useOutletContext()
+  const { listItem, isLoading, setFavourite, layout, setLayout, searchQuery } = useOutletContext()
 
   const trashedNotes = listItem.filter(item => item.isTrashed)
-  const filteredTrashedNotes = trashedNotes.filter(item=> item.title.toLowerCase().includes(searchQuery.toLowerCase())||item.description.toLowerCase().includes(searchQuery.toLowerCase())) || trashedNotes;
+  const filteredTrashedNotes = trashedNotes.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase())) || trashedNotes;
 
   return (
-    <div className="flex flex-col justify-start items-center gap-4 w-full py-2 px-6 mt-12 tablet:mt-0 mb-18 tablet:mb-0">
+    <div className="flex flex-col justify-start items-center gap-4 w-full py-2 px-4 mobile:px-6 mt-12 tablet:mt-0 mb-18 tablet:mb-0">
       <PageHeader
         title="Trash"
         description="Items in trash are safely preserved and automatically cleared after 30 days."
         layout={layout}
         setLayout={setLayout}
+        showLayout={true}
       />
-      {trashedNotes.length === 0 ?
-        (<EmptyState desc="Nothing here yet. Notes you delete will be moved to the trash."/>) :
-        (<div className={`w-full ${layout==="grid"? "grid-cols-1 mobile:grid-cols-2 laptop:grid-cols-3": "grid-cols-1"} grid gap-6`}>
+      {isLoading ? (
+        <div className="flex justify-center items-center w-full py-16">
+          <div className="w-6 h-6 border-2 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
+        </div>
+      ) : trashedNotes.length === 0 ?
+        (<EmptyState desc="Nothing here yet. Notes you delete will be moved to the trash." />) :
+        (<div className={`w-full ${layout === "grid" ? "grid-cols-1 mobile:grid-cols-2 laptop:grid-cols-3" : "grid-cols-1"} grid gap-6`}>
           {
             filteredTrashedNotes.map((item) => (
               <TodoItem

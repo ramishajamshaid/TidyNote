@@ -2,7 +2,7 @@ import { ArrowLeft, Ban, Check } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import api from "../api/api";
-import Tiptap from "../components/tiptap/TipTap";
+import Tiptap from "../components/tiptap/Tiptap.jsx";
 import { toast } from "sonner";
 
 const colors = [

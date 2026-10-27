@@ -1,7 +1,7 @@
 import { X, Star, DessertIcon, Check, Ban } from "lucide-react";
 import { useState } from "react";
 import api from "../../api/api";
-import Tiptap from "../tiptap/TipTap";
+import Tiptap from "../tiptap/Tiptap.jsx";
 import { toast } from "sonner";
 
 const colors = [

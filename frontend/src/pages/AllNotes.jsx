@@ -9,7 +9,7 @@ import PageHeader from '../components/PageHeader.jsx'
 
 function AllNotes() {
     const navigate = useNavigate()
-    const { listItem, setListItem, setFavourite, layout, setLayout, searchQuery } = useOutletContext()
+    const { listItem, isLoading, setListItem, setFavourite, layout, setLayout, searchQuery } = useOutletContext()
     const day = new Date().toLocaleDateString("en-us",
         {
             year: "numeric",
@@ -18,10 +18,10 @@ function AllNotes() {
             day: "numeric"
         }
     );
-    
+
     const month = new Date().toLocaleDateString("en-us", { month: "long" });
-    const allnotes = listItem.filter(item=> !item.isTrashed)
-    const filteredListItem = allnotes.filter(item=> item.title.toLowerCase().includes(searchQuery.toLowerCase())||item.description.toLowerCase().includes(searchQuery.toLowerCase())) || allnotes;
+    const allnotes = listItem.filter(item => !item.isTrashed)
+    const filteredListItem = allnotes.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase())) || allnotes;
 
     return (
         <>
@@ -31,10 +31,15 @@ function AllNotes() {
                     description="Capture your thoughts, reflections, and ideas in a mindful space."
                     layout={layout}
                     setLayout={setLayout}
+                    showLayout={true}
                 />
-                {allnotes.length === 0 ?
+                {isLoading ? (
+                    <div className="flex justify-center items-center w-full py-16">
+                        <div className="w-6 h-6 border-2 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
+                    </div>
+                ) : allnotes.length === 0 ?
                     (<EmptyState desc="Nothing here yet. Create a Note to get started." />) :
-                    (<div className={`w-full ${layout==="grid"? "grid-cols-1 mobile:grid-cols-2 laptop:grid-cols-3": "grid-cols-1"} grid gap-6`}>
+                    (<div className={`w-full ${layout === "grid" ? "grid-cols-1 mobile:grid-cols-2 laptop:grid-cols-3" : "grid-cols-1"} grid gap-6`}>
                         {
                             filteredListItem.map((item, index) => (
                                 <TodoItem
@@ -49,8 +54,8 @@ function AllNotes() {
                                     }}
                                     isTrashed={item.isTrashed}
                                     isFavourite={item.isFavourite}
-                                    onClick={()=> navigate(`/dashboard/detail-page/${item._id}`, {
-                                        state: {from: "all-notes"}
+                                    onClick={() => navigate(`/dashboard/detail-page/${item._id}`, {
+                                        state: { from: "all-notes" }
                                     })}
                                 />
                             ))

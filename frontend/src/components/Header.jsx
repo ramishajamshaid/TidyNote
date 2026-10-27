@@ -7,11 +7,11 @@ const Header = ({ searchQuery, setSearchQuery }) => {
       {/* Left */}
       <div className="flex items-center justify-between tablet:hidden">
         <div className="flex items-center gap-1">
-          <span className="font-semibold text-[18px] tracking-wide text-heading font-poppins">
+          <span className="font-semibold text-[1.3rem] tracking-wide text-heading font-poppins">
             TidyNote
           </span>
-          <span className="w-6 h-6 rounded-lg bg-purple-light flex items-center justify-center text-purple-dark">
-            <PencilSparkles size={16} />
+          <span className="w-8 h-8 rounded-lg bg-purple-light flex items-center justify-center text-purple-dark">
+            <PencilSparkles size={18} />
           </span>
         </div>
       </div>
@@ -38,19 +38,24 @@ const Header = ({ searchQuery, setSearchQuery }) => {
       {/* Right */}
       <div className="flex items-center gap-2">
 
-        <Search size={18} className="flex mobile:hidden text-text shrink-0" />
         <button
           className="w-8 h-8 flex items-center justify-center bg-transparent rounded-full text-text hover:bg-purple-light hover:text-purple-dark transition-colors cursor-pointer"
           aria-label="Notifications"
         >
-          <Bell className="w-4 h-4 tablet:w-5 tablet:h-5" />
+          <Search className="w-5 h-5 flex mobile:hidden text-text shrink-0" />
+        </button>
+        <button
+          className="w-8 h-8 flex items-center justify-center bg-transparent rounded-full text-text hover:bg-purple-light hover:text-purple-dark transition-colors cursor-pointer"
+          aria-label="Notifications"
+        >
+          <Bell className="w-5 h-5" />
         </button>
 
         <button
           className="w-8 h-8 flex items-center justify-center bg-transparent rounded-full text-text hover:bg-purple-light hover:text-purple-dark transition-colors cursor-pointer"
           aria-label="Help"
         >
-          <CircleHelp className="w-4 h-4 tablet:w-5 tablet:h-5" />
+          <CircleHelp className="w-5 h-5" />
         </button>
 
       </div>

@@ -14,6 +14,7 @@ function DashboardLayout() {
   const [searchQuery, setSearchQuery] = useState("")
   const [user, setUser] = useState({})
   const [listItem, setListItem] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [layout, setLayout] = useState("grid")
 
   useEffect(() => {
@@ -29,6 +30,8 @@ function DashboardLayout() {
       }
     } catch (error) {
       console.log("Error: ", error);
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -185,12 +188,12 @@ function DashboardLayout() {
             setSearchQuery={setSearchQuery}
           />
           <main className="flex-1 min-h-0 overflow-y-auto">
-            <Outlet context={{ listItem, setListItem, setFavourite, layout, setLayout, searchQuery, setSearchQuery }} />
+            <Outlet context={{ listItem, setListItem, setFavourite, isLoading, layout, setLayout, searchQuery, setSearchQuery }} />
           </main>
         </div>
         {/* <!-- Bottom Nav  --> */}
         <div className="fixed bottom-0 w-full bg-linear-to-br from-[#e6f3ff] to-[#f7eeff] rounded-t-2xl tablet:hidden px-3 space-y-6 overflow-x-hidden">
-          <nav className="flex justify-center items-center gap-1.5 mobile:gap-3 px-4 py-1">
+          <nav className="flex justify-center items-center gap-4 px-4 py-1.5">
             <BottomNav
               to=""
               label="Notes"
@@ -202,20 +205,20 @@ function DashboardLayout() {
               icon={Star}
             />
             <button
-              className="bg-purple-dark hover:bg-purple-deep text-white p-1.5 mobile:p-2 rounded-full text-[14px] font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-2xl"
+              className="bg-purple-dark hover:bg-purple-deep text-white p-2 rounded-full text-[14px] font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-2xl"
               onClick={() => navigate('/dashboard/add-note')}
             >
-              <CirclePlus className="w-5 h-5 mobile:w-6 mobile:h-6 shrink-0" />
+              <CirclePlus className="w-6 h-6 shrink-0" />
             </button>
-            <BottomNav
-              to="completed"
-              label="Completed"
-              icon={CircleCheckBig}
-            />
             <BottomNav
               to="trash"
               label="Trash"
               icon={Trash}
+            />
+            <BottomNav
+              to="support"
+              label="support"
+              icon={Headset}
             />
           </nav>
         </div>
